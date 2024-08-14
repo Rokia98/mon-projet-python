@@ -1,4 +1,4 @@
-from models.couleurs import *
+
 from datetime import datetime
 from base import bd
 from base import req_utilisateur
@@ -21,7 +21,7 @@ class Utilisateur:
     
     # Retourne une représentation sous forme de chaîne de l'utilisateur. 
     def __str__(self):
-        return f"{vert}Utilisateur n0 {self.__id} : {self.__pseudo} crée le {self.__dateCreation}{reset}"
+        return f"Utilisateur n0 {self.__id} : {self.__pseudo} crée le {self.__dateCreation}"
     
     # Retourne l'identifiant unique de l'utilisateur
     @property
@@ -60,13 +60,13 @@ class Utilisateur:
                 req_utilisateur.ajouter_utilisateur(curseur, pseudo, motDePasse)  # Fonction pour insérer dans la BD
                 connection.commit()
                 nouvel_utilisateur.__id = curseur.lastrowid  # Récupérer l'ID de l'utilisateur créé
-                return f"{vert}Compte créé avec succès !!\n-->Pseudo : {pseudo}{reset}"
+                return f"Compte créé avec succès !!\n-->Pseudo : {pseudo}"
             except Exception as e:
-                print(f"{rouge}Erreur lors de la création du compte: {e}{reset}")
+                print(f"Erreur lors de la création du compte: {e}")
             finally:
                 curseur.close()
                 connection.close()
-        return f"{rouge}Échec de la connexion à la base de données.{reset}"
+        return f"Échec de la connexion à la base de données."
 
     def modifierMotDePasse(self, nouveauMotDePasse):
         """Modifie le mot de passe de l'utilisateur dans la base de données."""
@@ -77,9 +77,9 @@ class Utilisateur:
                 curseur = connection.cursor()
                 req_utilisateur.modifier_mot_de_passe(curseur, self.__pseudo, nouveauMotDePasse)
                 connection.commit()
-                print(f"{vert}Mot de passe modifié pour l'utilisateur {self.__pseudo}.{reset}")
+                print(f"Mot de passe modifié pour l'utilisateur {self.__pseudo}.")
             except Exception as e:
-                print(f"{rouge}Erreur lors de la modification du mot de passe: {e}{reset}")
+                print(f"Erreur lors de la modification du mot de passe: {e}")
             finally:
                 curseur.close()
                 connection.close()
@@ -93,9 +93,9 @@ class Utilisateur:
                 curseur = connection.cursor()
                 req_utilisateur.supprimer_utilisateur(curseur, pseudo)  # Fonction pour supprimer de la BD
                 connection.commit()
-                print(f"{vert}Utilisateur {pseudo} supprimé.{reset}")
+                print(f"Utilisateur {pseudo} supprimé.")
             except Exception as e:
-                print(f"{rouge}Erreur lors de la suppression de l'utilisateur: {e}{reset}")
+                print(f"Erreur lors de la suppression de l'utilisateur: {e}")
             finally:
                 curseur.close()
                 connection.close()
@@ -113,7 +113,7 @@ class Utilisateur:
                     print(f"ID: {user[0]}, Pseudo: {user[1]}, Date de création: {user[2]}")
                 return utilisateurs
             except Exception as e:
-                print(f"{rouge}Erreur lors de la récupération des utilisateurs: {e}{reset}")
+                print(f"Erreur lors de la récupération des utilisateurs: {e}")
             finally:
                 curseur.close()
                 connection.close()

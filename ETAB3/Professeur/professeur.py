@@ -6,8 +6,6 @@ class Professeur(Personne, IEducation, ICRUDProfesseur):
     """
     Classe représentant un professeur, héritant de Personne et implémentant des interfaces éducatives.
     """
-
-    __professeurs = []
     
     # Initialise un nouveau professeur avec ses informations personnelles et ses responsabilités.
     def __init__(self, dateNaissance, ville, prenom, nom, telephone, vacant, matiereEnseigne, prochainCours, sujetProchaineReunion):
@@ -17,7 +15,7 @@ class Professeur(Personne, IEducation, ICRUDProfesseur):
         self.__prochainCours = prochainCours
         self.__sujetProchaineReunion = sujetProchaineReunion
 
-    # Retourne une représentation sous forme de chaîne du professeur.
+    # 
     def __str__(self):
         statut_affiche = "Oui" if self.__vacant else "Non"
         return f"Professeur n° {self.get_id} : {self.get_nom} {self.get_prenom}, né le {self.get_date_naissance} à {self.get_ville}, téléphone : {self.get_telephone}, vacant: {statut_affiche}, enseigne {self.__matiereEnseigne}"
