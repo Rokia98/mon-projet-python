@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-import 
+
 
 class IEducation(ABC):
     """
